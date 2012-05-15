@@ -14,6 +14,7 @@ KEYWORDS="~amd64 ~x86"
 SLOT="0"
 IUSE="+cthyb hubbard1 wien2k pade doc development test"
 
+
 RDEPEND="virtual/mpi
 	>=dev-libs/boost-1.46[python,mpi]
 	>=sci-libs/hdf5-1.8.0
@@ -31,6 +32,10 @@ RDEPEND="virtual/mpi
 "
 DEPEND="${RDEPEND}
 	doc? ( >=dev-python/sphinx-1.0.1[latex] )"
+
+# We use our custom version of app-admin/eselect-boost (see also Gentoo bug #404319)
+DEPEND="${DEPEND} >=app-admin/eselect-boost-0.4.1"
+
 PYTHON_DEPEND="2:2.6.5"
 
 pkg_setup() {
@@ -76,13 +81,6 @@ src_configure() {
 		mycmakeargs+=" -DBOOST_SOURCE_DIR=${BOOST_SOURCE_DIR}"
 		einfo "Using Boost sources from ${BOOST_SOURCE_DIR} ..."
 	fi
-
-	# Determine BOOST_MODULE_DIR
-	# Remove the next 3 lines if the patch to app-admin/eselect-boost approved (see Gentoo
-	# bug #404319) to create $(python_get_sitedir)/boost symlink instead of $(python_get_sitedir)/mpi.so
-	mpiso_path="$(python_get_sitedir)/mpi.so"
-	boost_path=$(dirname $(readlink -f "${mpiso_path}"))
-	mycmakeargs+=" -DBOOST_MODULE_DIR=${boost_path}"
 
 	# BLAS/LAPACK libraries
 	lapack_libs="libblas libcblas liblapack"
