@@ -68,9 +68,9 @@ src_configure() {
 	# Determine BOOST_MODULE_DIR
 	# Remove the next 3 lines if a patch to eselect-boost approved
 	# to create $(python_get_sitedir)/boost symlink instead of $(python_get_sitedir)/mpi.so
-	#mpiso_path="$(python_get_sitedir)/mpi.so"
-	#boost_path=$(dirname $(readlink -f "${mpiso_path}"))
-	#mycmakeargs+=" -DBOOST_MODULE_DIR=${boost_path}"
+	mpiso_path="$(python_get_sitedir)/mpi.so"
+	boost_path=$(dirname $(readlink -f "${mpiso_path}"))
+	mycmakeargs+=" -DBOOST_MODULE_DIR=${boost_path}"
 
 	# BLAS/LAPACK libraries
 	lapack_libs="libblas libcblas liblapack"
