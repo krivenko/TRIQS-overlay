@@ -82,7 +82,7 @@ src_configure() {
 
 	# Python library path
 	python_library_path=$(python_get_library)
-	mycmakeargs+=" -DPYTHON_LIBRARY=${EROOT}/${python_library_path}"
+	mycmakeargs+=" -DPYTHON_LIBRARY=${python_library_path}"
 
 	cmake-utils_src_configure
 }
