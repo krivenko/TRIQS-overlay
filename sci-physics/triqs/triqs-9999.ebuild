@@ -68,8 +68,8 @@ src_configure() {
 	fi
 
 	# Determine BOOST_MODULE_DIR
-	# Remove the next 3 lines if a patch to eselect-boost approved
-	# to create $(python_get_sitedir)/boost symlink instead of $(python_get_sitedir)/mpi.so
+	# Remove the next 3 lines if the patch to app-admin/eselect-boost approved (see Gentoo
+	# bug #404319) to create $(python_get_sitedir)/boost symlink instead of $(python_get_sitedir)/mpi.so
 	mpiso_path="$(python_get_sitedir)/mpi.so"
 	boost_path=$(dirname $(readlink -f "${mpiso_path}"))
 	mycmakeargs+=" -DBOOST_MODULE_DIR=${boost_path}"
@@ -105,7 +105,3 @@ src_install() {
 		rmdir "${doc_src}"
 	fi
 }
-
-#pkg_postrm() {
-#	unlink "$(python_get_sitedir)/pytriqs/boost"
-#}
