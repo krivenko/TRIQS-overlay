@@ -70,19 +70,11 @@ src_configure() {
 	mycmakeargs+=" -DBLITZ_INSTALLED=ON"
 
 	# Boost
-	if [[ -z ${BOOST_SOURCE_DIR} ]]; then
-		mycmakeargs+=" -DBOOST_INSTALL_ROOT_DIR=${EROOT}usr"
-	else
-		mycmakeargs+=" -DBOOST_SOURCE_DIR=${BOOST_SOURCE_DIR}"
-		einfo "Using Boost sources from ${BOOST_SOURCE_DIR} ..."
-	fi
-
-	# Determine BOOST_MODULE_DIR
-	# Remove the next 3 lines if the patch to app-admin/eselect-boost approved (see Gentoo
-	# bug #404319) to create $(python_get_sitedir)/boost symlink instead of $(python_get_sitedir)/mpi.so
-	mpiso_path="$(python_get_sitedir)/mpi.so"
-	boost_path=$(dirname $(readlink -f "${mpiso_path}"))
+	local eselect_output=$(eselect --brief --no-color boost show)
+	local boost_profile=$(echo ${eselect_output/-/_})
+	local boost_path="${EROOT}$(python_get_sitedir -b)/${boost_profile}"
 	mycmakeargs+=" -DBOOST_MODULE_DIR=${boost_path}"
+	echo $boost_path
 
 	# BLAS/LAPACK libraries
 	lapack_libs="libblas libcblas liblapack"
