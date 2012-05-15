@@ -12,7 +12,7 @@ EGIT_REPO_URI="https://github.com/TRIQS/TRIQS.git"
 LICENSE="GPL-3"
 KEYWORDS="~amd64 ~x86"
 SLOT="0"
-IUSE="+cthyb hubbard1 wien2k doc development test"
+IUSE="+cthyb hubbard1 wien2k pade doc development test"
 
 RDEPEND="virtual/mpi
 	>=dev-libs/boost-1.46[python,mpi]
@@ -27,6 +27,7 @@ RDEPEND="virtual/mpi
 	dev-python/h5py
 	>=dev-python/matplotlib-0.99
 	wien2k? ( virtual/fortran )
+	pade? ( dev-libs/gmp[cxx] )
 "
 DEPEND="${RDEPEND}
 	doc? ( >=dev-python/sphinx-1.0.1[latex] )"
@@ -51,6 +52,7 @@ src_configure() {
 		$(cmake-utils_use cthyb Build_CTHyb)
 		$(cmake-utils_use hubbard1 Build_HubbardI)
 		$(cmake-utils_use wien2k Build_Wien2k)
+		$(cmake-utils_use pade Use_Pade)
 		$(cmake-utils_use development Install_dev)
 	"
 
