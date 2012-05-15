@@ -44,6 +44,16 @@ pkg_setup() {
 
 src_prepare() {
 	epatch "${FILESDIR}/cleanup-environment-for-f2py.patch"
+	
+	# Newer Boost versions install multiple instances of libboost_python.so for
+	# different Python ABIs.
+	if has_version ">=dev-libs/boost-1.48"; then
+		python_ver=$(python_get_version)
+		sed -i \
+			-e "s/-lboost_python/-lboost_python-${python_ver}/" \
+			-e "s/libboost_python/libboost_python-${python_ver}/" \
+			cmake/FindBoost.cmake
+	fi
 }
 
 src_configure() {
