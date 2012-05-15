@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>no-herd</herd>
+<maintainer>
+    <email>krivenko@cpht.polytechnique.fr</email>
+    <name>Igor Krivenko</name>
+</maintainer>
+<longdescription lang="en">
+TRIQS (Toolbox for Research on Interacting Quantum Systems) is an open-source scientific project that aims at providing a simple, efficient and flexible environment to study quantum correlations in various systems. It is designed as an extension of the python language improved by a set of modules that allow to manipulate, e.g. Green’s functions, Bravais lattices, quantum impurity solvers.
+</longdescription>
+</pkgmetadata>

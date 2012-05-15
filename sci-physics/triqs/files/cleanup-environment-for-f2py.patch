@@ -1,0 +1,22 @@
+Index: CommonLibs/cmake/FindBuildF2pyModule.cmake
+===================================================================
+--- CommonLibs/cmake/FindBuildF2pyModule.cmake	(revision 1367)
++++ CommonLibs/cmake/FindBuildF2pyModule.cmake	(working copy)
+@@ -15,9 +15,17 @@
+  # write the script that will build the f2py extension
+  SET(filename ${CMAKE_CURRENT_BINARY_DIR}/${filename} )
+  FILE(WRITE ${filename} "import sys\n")
++ FILE(APPEND ${filename} "import os\n")
++ FILE(APPEND ${filename} "old_vars={}\n")
++ FILE(APPEND ${filename} "flags_vars = ['CFLAGS','FFLAGS','LDFLAGS']\n")
++ FILE(APPEND ${filename} "for var in flags_vars:\n")
++ FILE(APPEND ${filename} "\told_vars[var] = os.environ[var]\n")
++ FILE(APPEND ${filename} "\tdel os.environ[var]\n")
+  FILE(APPEND ${filename} "from numpy.f2py import main\n")
+  FILE(APPEND ${filename} "sys.argv = [''] +'-c --f90exec=${CMAKE_Fortran_COMPILER} -m ${modulename} ${modulename}.pyf ${filelist} -llapack'.split()\n") 
+  FILE(APPEND ${filename} "main()\n")
++ FILE(APPEND ${filename} "for var in flags_vars:\n")
++ FILE(APPEND ${filename} "\tos.environ[var] = old_vars[var]\n")
+ 
+  # We had the normal target of the module
+  add_custom_target(${target_name} DEPENDS ${modulename}.so) 
