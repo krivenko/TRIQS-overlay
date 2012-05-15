@@ -83,7 +83,7 @@ src_configure() {
 	if use amd64 || use ppc64; then  mycmakeargs+=" -DLAPACK_64_BIT=ON"; fi
 
 	# Python library path
-	python_library_path=$(python_get_library)
+	python_library_path="${EROOT}$(python_get_library -b)"
 	mycmakeargs+=" -DPYTHON_LIBRARY=${python_library_path}"
 
 	cmake-utils_src_configure
