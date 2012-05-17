@@ -74,7 +74,6 @@ src_configure() {
 	local boost_profile=$(echo ${eselect_output/-/_})
 	local boost_path="${EROOT}$(python_get_sitedir -b)/${boost_profile}"
 	mycmakeargs+=" -DBOOST_MODULE_DIR=${boost_path}"
-	echo $boost_path
 
 	# BLAS/LAPACK libraries
 	lapack_libs="libblas libcblas liblapack"
