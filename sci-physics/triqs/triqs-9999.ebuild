@@ -44,6 +44,7 @@ pkg_setup() {
 
 src_prepare() {
 	epatch "${FILESDIR}/cleanup-environment-for-f2py.patch"
+	epatch "${FILESDIR}/require-multithreaded-boost.patch"
 	
 	# Newer Boost versions install multiple instances of libboost_python.so for
 	# different Python ABIs.
