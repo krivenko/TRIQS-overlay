@@ -15,7 +15,7 @@ SLOT="0"
 IUSE="+cthyb hubbard1 wien2k pade doc development test"
 
 RDEPEND="virtual/mpi
-	>=dev-libs/boost-1.46[python,mpi]
+	>=dev-libs/boost-1.49[python,mpi]
 	>=sci-libs/hdf5-1.8.0
 	>=sci-libs/fftw-3.2.0
 	virtual/blas
