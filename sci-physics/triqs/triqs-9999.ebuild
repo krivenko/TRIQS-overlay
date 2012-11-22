@@ -3,7 +3,8 @@
 
 EAPI="4"
 
-inherit cmake-utils python git-2 multilib
+PYTHON_COMPAT="python2_6 python2_7"
+inherit cmake-utils python-distutils-ng git-2 multilib
 
 DESCRIPTION="Toolbox for Research on Interacting Quantum Systems"
 HOMEPAGE="http://ipht.cea.fr/triqs/"
@@ -31,10 +32,9 @@ RDEPEND="virtual/mpi
 "
 DEPEND="${RDEPEND}
 	doc? ( >=dev-python/sphinx-1.0.1[latex] )"
-PYTHON_DEPEND="2:2.6.5"
+PYTHON_COMPAT="python2_6 python2_7"
 
 pkg_setup() {
-	python_pkg_setup
 	if has_version dev-python/ipython; then
 		einfo "dev-python/ipython is installed."
 		einfo "A second script named ipytriqs will be generated along with pytriqs,"
