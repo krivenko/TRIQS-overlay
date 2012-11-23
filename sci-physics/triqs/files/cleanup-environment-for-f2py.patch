@@ -13,7 +13,7 @@ Index: CommonLibs/cmake/FindBuildF2pyModule.cmake
 + FILE(APPEND ${filename} "\told_vars[var] = os.environ[var]\n")
 + FILE(APPEND ${filename} "\tdel os.environ[var]\n")
   FILE(APPEND ${filename} "from numpy.f2py import main\n")
-  FILE(APPEND ${filename} "sys.argv = [''] +'-c --f90exec=${CMAKE_Fortran_COMPILER} -m ${modulename} ${modulename}.pyf ${filelist} -llapack'.split()\n") 
+  FILE(APPEND ${filename} "sys.argv = [''] +'-c --f77exec=${CMAKE_Fortran_COMPILER} --f90exec=${CMAKE_Fortran_COMPILER} -m ${modulename} ${modulename}.pyf ${filelist} -llapack'.split()\n")
   FILE(APPEND ${filename} "main()\n")
 + FILE(APPEND ${filename} "for var in flags_vars:\n")
 + FILE(APPEND ${filename} "\tos.environ[var] = old_vars[var]\n")
