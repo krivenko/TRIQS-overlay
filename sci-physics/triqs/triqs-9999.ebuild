@@ -58,6 +58,10 @@ src_prepare() {
 		-e "s/-lboost_python/-lboost_python-${python_ver}/" \
 		-e "s/libboost_python/libboost_python-${python_ver}/" \
 		cmake/FindBoost.cmake
+
+	sed -i \
+		-e "s/-llapack/$(pkg-config --libs-only-l lapack)/" \
+		cmake/FindBuildF2pyModule.cmake
 }
 
 src_configure() {
