@@ -83,11 +83,6 @@ src_configure() {
 	mycmakeargs+=" -DBOOST_MODULE_DIR=${boost_path}"
 
 	# BLAS/LAPACK libraries
-	lapack_libs="libblas libcblas liblapack"
-	mycmakeargs+=" -DLAPACK_LIBS="
-	for l in $lapack_libs; do
-		mycmakeargs+="${EROOT}usr/$(get_libdir)/${l}$(get_modname);"
-	done
 	if use amd64 || use ppc64; then  mycmakeargs+=" -DLAPACK_64_BIT=ON"; fi
 
 	# Python library path
