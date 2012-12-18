@@ -50,6 +50,7 @@ pkg_setup() {
 src_prepare() {
 	epatch "${FILESDIR}/cleanup-environment-for-f2py.patch"
 	epatch "${FILESDIR}/require-multithreaded-boost.patch"
+	epatch "${FILESDIR}/boost-symlink-workaround.patch"
 
 	python_export_best
 
