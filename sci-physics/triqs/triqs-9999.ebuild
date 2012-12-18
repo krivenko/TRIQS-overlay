@@ -1,7 +1,7 @@
 # Copyright 2011-2012 Igor Krivenko
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="4"
+EAPI="5"
 
 PYTHON_COMPAT=(python2_6 python2_7)
 inherit cmake-utils python-r1 git-2 multilib versionator
