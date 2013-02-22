@@ -80,11 +80,15 @@ src_configure() {
 	mycmakeargs+=" -DBLITZ_INSTALLED=ON"
 
 	# Boost
-	local boost_p="$(best_version dev-libs/boost)"
-	local boost_pv="${boost_p:15}"
-	local boost_major_v="$(get_version_component_range 1-2 ${boost_pv})"
-	local boost_major_pv=$(replace_all_version_separators _ ${boost_major_v})
-	local boost_path="$(python_get_sitedir)/boost_${boost_major_pv}"
+	if not has_version ">=dev-libs/boost-1.51.0-r1"; then
+		local boost_p="$(best_version dev-libs/boost)"
+		local boost_pv="${boost_p:15}"
+		local boost_major_v="$(get_version_component_range 1-2 ${boost_pv})"
+		local boost_major_pv=$(replace_all_version_separators _ ${boost_major_v})
+		local boost_path="$(python_get_sitedir)/boost_${boost_major_pv}"
+	else
+		local boost_path="$(python_get_sitedir)/boost"
+	fi
 	mycmakeargs+=" -DBOOST_MODULE_DIR=${boost_path}"
 
 	# BLAS/LAPACK libraries
