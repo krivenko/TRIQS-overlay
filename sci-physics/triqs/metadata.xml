@@ -3,17 +3,10 @@
 <pkgmetadata>
 <herd>no-herd</herd>
 <maintainer>
-    <email>krivenko@cpht.polytechnique.fr</email>
+    <email>igor.s.krivenko@gmail.com</email>
     <name>Igor Krivenko</name>
 </maintainer>
 <longdescription lang="en">
-TRIQS (Toolbox for Research on Interacting Quantum Systems) is an open-source scientific project that aims at providing a simple, efficient and flexible environment to study quantum correlations in various systems. It is designed as an extension of the python language improved by a set of modules that allow to manipulate, e.g. Green’s functions, Bravais lattices, quantum impurity solvers.
+TRIQS (Toolbox for Research on Interacting Quantum Systems) is a scientific project providing a set of C++ and Python libraries to develop new tools for the study of interacting quantum systems.
 </longdescription>
-<use>
-	<flag name='cthyb'>Build the continuous-time hybridization impurity solver</flag>
-	<flag name='development'>Install developer&apos;s version of TRIQS</flag>
-	<flag name='hubbard1'>Build a simple Hubbard-I solver</flag>
-	<flag name='pade'>Build Pade tools</flag>
-	<flag name='wien2k'>Build the interface to WIEN2K</flag>
-</use>
 </pkgmetadata>
