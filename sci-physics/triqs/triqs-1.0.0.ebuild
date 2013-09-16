@@ -39,7 +39,7 @@ RDEPEND="${PYTHON_DEPS}
     virtual/mpi
     >=sci-libs/fftw-3.2.0
     >=sci-libs/hdf5-1.8.0
-    >=dev-libs/boost-1.49[python,mpi]
+    >=dev-libs/boost-1.49[python?,mpi]
     sci-libs/scipy
     dev-python/numpy
     dev-python/h5py
